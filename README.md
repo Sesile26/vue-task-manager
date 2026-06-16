@@ -4,7 +4,7 @@ English | [Українська](./README.uk.md)
 
 An SPA for managing projects and the tasks inside them. Vue 3 (Composition API) + TypeScript (strict, no `any`) + Pinia. Works without a real backend — through an Axios mock adapter on top of `localStorage`.
 
-**Live version:** _<!-- paste URL here after deploy -->_
+**Live demo:** [Vue Task Manager](https://vue-task-manager-six.vercel.app)
 
 ---
 
@@ -101,7 +101,7 @@ Routes are matched by method and URL, bodies are parsed from JSON, responses are
 
 - **Optimistic mutations without rollback.** `reorderTasks`/`syncBoard` change state before the server responds (instant UI), and on a failed `PUT` they surface the error without rolling back. The mock never fails, so for this assignment a rollback would be wasted code; in production this would be a state rollback on request failure.
 - **Reorder issues multiple `PUT`s.** Persisting a new order sends one `PUT /tasks/:id` per changed task (`Promise.all`). A real backend would warrant a batch endpoint (e.g. `PATCH /tasks/reorder`); within the mock this is a deliberate simplification.
-- **Filters/sort — in the URL, view mode — in `localStorage`.** *View state* (filters, sort) lives in the query string: shareable, bookmarkable, and friendly with back/forward. The selected Table/Kanban mode stays in `localStorage` — as the assignment explicitly requires. One mechanism per kind of state, not mixed.
+- **Filters/sort — in the URL, view mode — in `localStorage`.** _View state_ (filters, sort) lives in the query string: shareable, bookmarkable, and friendly with back/forward. The selected Table/Kanban mode stays in `localStorage` — as the assignment explicitly requires. One mechanism per kind of state, not mixed.
 - **Two separate drag composables** (`useDragSort` for the list, `useKanbanDrag` for the board) rather than one generic. The shared kernel is a handful of lines; merging them into `useDragSort<T | Record<S, T[]>>` would make both scenarios less readable. The semantics differ (flat list vs `Record<status, list>`), so they are kept apart on purpose.
 - **Column sort and manual DnD in the table are mutually exclusive.** While a column sort is active, drag is disabled (otherwise the next re-render by sort would "throw away" the dragged row). A third click on the header returns to manual mode, where DnD works again.
 - **`order` is project-wide.** Both the table (flat list) and the Kanban (order within a column) read the same `order`, which is recomputed end-to-end across todo → in_progress → done after any drop. This makes syncing the two modes trivial — both look at the same store array.
