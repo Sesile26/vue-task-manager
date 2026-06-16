@@ -1,0 +1,22 @@
+// Use via: @use '@/styles/variables' as vars;
+
+$color-bg: #ffffff;
+$color-text: #1a1a1a;
+$color-primary: #42b883;
+$color-primary-dark: #35495e;
+$color-border: #e2e2e2;
+
+$font-family-base: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+$radius-sm: 4px;
+$radius-md: 8px;
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;

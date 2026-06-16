@@ -1,0 +1,79 @@
+@use 'sass:color';
+@use 'reset';
+@use 'tokens'; // design tokens (CSS custom props) + themed body — drives light/dark
+@use 'variables' as vars;
+@use 'mixins' as mix;
+
+#app {
+  min-height: 100%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$spacing-xs;
+  padding: vars.$spacing-sm vars.$spacing-md;
+  border: 1px solid transparent;
+  border-radius: vars.$radius-sm;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:focus-visible {
+    outline: 2px solid vars.$color-primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn--primary {
+  background-color: vars.$color-primary;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background-color: color.adjust(vars.$color-primary, $lightness: -6%);
+  }
+}
+
+.btn--ghost {
+  border-color: vars.$color-border;
+  color: vars.$color-text;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.btn--danger {
+  border-color: #d9534f;
+  color: #c0392b;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(217, 83, 79, 0.08);
+  }
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px vars.$spacing-sm;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  &--active {
+    background-color: rgba(vars.$color-primary, 0.15);
+    color: color.adjust(vars.$color-primary, $lightness: -18%);
+  }
+
+  &--archived {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: vars.$color-primary-dark;
+  }
+}

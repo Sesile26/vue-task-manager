@@ -1,0 +1,26 @@
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    width?: number | string
+    height?: number | string
+    strokeWidth?: number | string
+  }>(),
+  { width: 16, height: 16, strokeWidth: 2 },
+)
+</script>
+
+<template>
+  <svg
+    :width="width"
+    :height="height"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    :stroke-width="strokeWidth"
+    stroke-linecap="round"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M18 6 6 18M6 6l12 12" />
+  </svg>
+</template>
